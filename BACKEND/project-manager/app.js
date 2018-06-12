@@ -1,12 +1,16 @@
-var createError = require("http-errors");
-var express = require("express");
-var path = require("path");
-var cookieParser = require("cookie-parser");
-var logger = require("morgan");
-
-var nembersRouter = require("./routes/api/nembers");
-var projectsRouter = require("./routes/api/projects");
-
+const createError = require("http-errors");
+const express = require("express");
+const path = require("path");
+const cookieParser = require("cookie-parser");
+const logger = require("morgan");
+const mongoose = require("mongoose");
+const nembersRouter = require("./routes/api/nembers");
+const projectsRouter = require("./routes/api/projects");
+const db = require("./configs/keys").mongoURI;
+mongoose
+  .connect(db)
+  .then(() => console.log("Kết nối thành công với database"))
+  .catch(err => console.log(err));
 var app = express();
 
 app.use(logger("dev"));

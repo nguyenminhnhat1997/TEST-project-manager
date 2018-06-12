@@ -7,14 +7,16 @@ var ProfileSchema = new Schema({
     type: String,
     required: true
   },
-  listMember: [
+  dec: {
+    type: String
+  },
+  listNember: [
     {
       nember: {
-        type: Schema.Types.ObjectId,
-        ref: "nembers"
+        type: String
       }
     }
   ]
 });
 
-module.exports = Profile = mongoose.model("profiles", ProfileSchema);
+module.exports = Profile = mongoose.model("projects", ProfileSchema);
