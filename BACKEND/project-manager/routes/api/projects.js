@@ -1,7 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const Project = require("../../models/Project");
-
+const Nember = require("../../models/Nember");
 const router = express.Router();
 //@route   GET /api/projects/test
 //@desc    test
@@ -75,18 +75,26 @@ router.delete("/:id_delete", (req, res) => {
 //@desc    thêm user vào project
 //@access  Public
 router.get("/:id_project/:id_nember", (req, res) => {
-  Project.findById(req.params.id_project)
-    .then(project => {
-      if (project) {
-        const id = req.params.id_nember;
-
-        project.listNember.unshift(id);
-        project.save().then(project => {
-          return res.json(project);
-        });
-      }
-      res.status(404).json({ msg: "not found" });
+  Nember.findById(req.params.id_nember)
+    .then(nember => {
+      var idNember = nember.id;
+      Project.findById(req.params.id_project).then(project => {
+        const newUser = {
+          nember: idNember
+        };
+        if (
+          project.listNember.filter(nem => nem.nember.toString() === idNember)
+            .length === 0
+        ) {
+          project.listNember.unshift(newUser);
+          project.save().then(project => {
+            return res.json(project);
+          });
+        } else {
+          res.status(400).json({ smg: "Nember này đã tồn tại trong list" });
+        }
+      });
     })
-    .catch(err => console.log(err));
+    .catch(err => console.log("nember khong ton tai"));
 });
 module.exports = router;

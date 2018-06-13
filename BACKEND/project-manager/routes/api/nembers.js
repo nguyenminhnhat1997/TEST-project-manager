@@ -43,4 +43,21 @@ router.post("/", (req, res) => {
     })
     .catch(err => console.log(err));
 });
+
+//@route   get /api/nembers/:id_nember
+//@desc    xoá tạm id_nember, trả về 1 mảng k có id_number
+//@access  Public
+router.get("/:id_nember", (req, res) => {
+  Nember.find()
+    .then(nembers => {
+      if (nembers) {
+        const arrayNew = nembers.filter(
+          nember => nember.id.toString() !== req.params.id_nember
+        );
+        return res.json(arrayNew);
+      }
+      res.status(400).json({ msg: "Khong get dc user" });
+    })
+    .catch(err => console.log(err));
+});
 module.exports = router;

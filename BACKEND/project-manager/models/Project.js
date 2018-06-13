@@ -13,7 +13,7 @@ var ProfileSchema = new Schema({
   listNember: [
     {
       nember: {
-        type: String
+        type: Schema.Types.ObjectId
       }
     }
   ]
