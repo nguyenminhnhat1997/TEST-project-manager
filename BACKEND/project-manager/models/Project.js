@@ -14,6 +14,9 @@ var ProfileSchema = new Schema({
     {
       nember: {
         type: Schema.Types.ObjectId
+      },
+      name: {
+        type: String
       }
     }
   ]

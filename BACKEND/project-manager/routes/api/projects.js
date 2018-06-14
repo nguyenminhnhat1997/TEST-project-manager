@@ -71,16 +71,18 @@ router.delete("/:id_delete", (req, res) => {
     })
     .catch(err => console.log(err));
 });
-//@route   POST /api/projects/:id_project
+//@route   GET /api/projects/:id_project/:id_nember
 //@desc    thêm user vào project
 //@access  Public
 router.get("/:id_project/:id_nember", (req, res) => {
   Nember.findById(req.params.id_nember)
     .then(nember => {
       var idNember = nember.id;
+      var nameNember = nember.name;
       Project.findById(req.params.id_project).then(project => {
         const newUser = {
-          nember: idNember
+          nember: idNember,
+          name: nameNember
         };
         if (
           project.listNember.filter(nem => nem.nember.toString() === idNember)

@@ -4,11 +4,10 @@ import "./App.css";
 import Nav from "./components/Nav";
 import Footer from "./components/Footer";
 import Landing from "./components/Landing";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 import Project from "./components/projects/Project";
+import DetailProject from "./components/projects/DetailProject";
 import Nember from "./components/nembers/Nember";
-import axios from "axios";
-import { connect } from "react-redux";
 import { Provider } from "react-redux";
 import store from "./store";
 class App extends Component {
@@ -22,6 +21,11 @@ class App extends Component {
             <div className="container">
               <Route exact path="/create-nember" component={Nember} />
               <Route exact path="/create-project" component={Project} />
+              <Route
+                exact
+                path="/project/:id_project"
+                component={DetailProject}
+              />
             </div>
             <Footer />
           </div>

@@ -1,2 +1,5 @@
 export const GET_PROJECTS = "GET_PROJECTS";
 export const CREATE_PROJECT = "CREATE_PROJECT";
+export const GET_NEMBER = "GET_NEMBER";
+export const CREATE_NEMBER = "CREATE_NEMBER";
+export const GET_PROJECTS_BY_ID = "GET_PROJECTS_BY_ID";

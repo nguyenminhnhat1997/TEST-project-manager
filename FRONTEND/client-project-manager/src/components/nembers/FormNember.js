@@ -1,13 +1,14 @@
 import React, { Component } from "react";
-import { createProject } from "../../actionReducer/actionProject";
+
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
-class FormProject extends Component {
+import { createNember } from "../../actionReducer/actionNember";
+class FormNember extends Component {
   constructor(props) {
     super(props);
     this.state = {
       name: "",
-      dec: ""
+      phone: ""
     };
   }
   handleOnChangeInput = event => {
@@ -18,16 +19,16 @@ class FormProject extends Component {
     });
   };
   handleOnClickSubmit = () => {
-    const newProject = {};
-    newProject.name = this.state.name;
-    newProject.dec = this.state.dec;
-    this.props.createProject(newProject, this.props.history);
+    const newNember = {};
+    newNember.name = this.state.name;
+    newNember.phone = this.state.phone;
+    this.props.createNember(newNember, this.props.history);
   };
   render() {
     return (
       <div className="col-3">
         <div className="card">
-          <div className="card-header bg-success">Tạo project</div>
+          <div className="card-header bg-success">Tạo nember</div>
           <div className="card-body">
             <form>
               <div className="form-group">
@@ -35,7 +36,7 @@ class FormProject extends Component {
                 <input
                   className="form-control"
                   name="name"
-                  placeholder="Enter name project"
+                  placeholder="Enter name nember"
                   type="text"
                   onChange={event => {
                     this.handleOnChangeInput(event);
@@ -43,12 +44,12 @@ class FormProject extends Component {
                 />
               </div>
               <div className="form-group">
-                <label htmlFor="exampleInputEmail1">Describe</label>
+                <label htmlFor="exampleInputEmail1">Phone</label>
                 <input
                   className="form-control"
-                  placeholder="Enter describe"
-                  name="dec"
-                  type="text"
+                  placeholder="Enter phone"
+                  name="phone"
+                  type="number"
                   onChange={event => {
                     this.handleOnChangeInput(event);
                   }}
@@ -58,7 +59,7 @@ class FormProject extends Component {
                 className="btn btn-danger btn-block"
                 type="reset"
                 onClick={this.handleOnClickSubmit}
-                value=" Thêm"
+                value="Thêm"
               />
             </form>
           </div>
@@ -70,5 +71,5 @@ class FormProject extends Component {
 
 export default connect(
   null,
-  { createProject }
-)(withRouter(FormProject));
+  { createNember }
+)(withRouter(FormNember));

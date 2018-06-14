@@ -9,7 +9,8 @@ class Project extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      isDisplay: true
+      isDisplay: true,
+      data: []
     };
   }
   componentWillMount() {
@@ -20,6 +21,11 @@ class Project extends Component {
       isDisplay: !this.state.isDisplay
     });
   };
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.project) {
+      this.setState({ data: nextProps.project.projects });
+    }
+  }
   displayForm = () => {
     if (this.state.isDisplay) {
       return <FormProject />;

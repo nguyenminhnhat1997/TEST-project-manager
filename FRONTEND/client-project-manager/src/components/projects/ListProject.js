@@ -1,8 +1,7 @@
 import React, { Component } from "react";
-
+import { Link } from "react-router-dom";
 class ListProject extends Component {
   render() {
-    console.log(this.props.idProject);
     return (
       <div className="col-4 float-left mb-2">
         <div className="card">
@@ -10,14 +9,18 @@ class ListProject extends Component {
             <img
               src="http://via.placeholder.com/233x100"
               className="img-thumbnail"
+              alt="alt"
             />
           </a>
           <div className="card-body">
             <h5 className="card-title">{this.props.name}</h5>
             <p className="card-text">{this.props.dec}</p>
-            <a href="" className="btn btn-primary">
+            <Link
+              to={`/project/${this.props.idProject}`}
+              className="btn btn-primary"
+            >
               Xem chi tiết
-            </a>
+            </Link>
           </div>
         </div>
       </div>

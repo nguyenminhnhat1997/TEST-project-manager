@@ -1,7 +1,12 @@
-import { GET_PROJECTS, CREATE_PROJECT } from "../actionReducer/type";
+import {
+  GET_PROJECTS,
+  CREATE_PROJECT,
+  GET_PROJECTS_BY_ID
+} from "../actionReducer/type";
 
 const initState = {
-  projects: []
+  projects: [],
+  detailProject: null
 };
 
 export default (state = initState, action) => {
@@ -12,7 +17,15 @@ export default (state = initState, action) => {
         projects: action.dataToStore
       };
     case CREATE_PROJECT:
-      state.projects.unshift(action.dataToStore);
+      return {
+        ...state,
+        projects: [action.dataToStore, ...state.projects]
+      };
+    case GET_PROJECTS_BY_ID:
+      return {
+        ...state,
+        detailProject: action.dataToStore
+      };
     default:
       return state;
   }
