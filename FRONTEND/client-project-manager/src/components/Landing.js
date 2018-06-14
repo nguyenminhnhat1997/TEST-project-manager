@@ -9,7 +9,7 @@ class Landing extends Component {
             <div className="row">
               <div className="col-md-12 text-center">
                 <h1 className="display-3 mb-4">Manager Project</h1>
-                <p className="lead"> Tạo user và quản lý project</p>
+                <p className="lead"> Tạo nember và quản lý project</p>
                 <hr />
                 <Link to="/create-nember" className="btn btn-lg btn-info mr-2">
                   Tạo nember
